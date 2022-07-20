@@ -22,6 +22,7 @@ public class ParkingController {
 		Parking parking = new Parking();
 		parking.setColor("Amarelo");
 		ParkingMapper mapper = new ParkingMapper();
+		
 		return mapper.parkingToList(Arrays.asList(parking));
 		
 	}
