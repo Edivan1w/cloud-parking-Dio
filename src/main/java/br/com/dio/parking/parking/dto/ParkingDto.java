@@ -2,6 +2,7 @@ package br.com.dio.parking.parking.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -12,7 +13,9 @@ public class ParkingDto {
 	private String state;
 	private String model;
 	private String color;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDate entryDate;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDate exitDate;
 	private Double bill;
 	
