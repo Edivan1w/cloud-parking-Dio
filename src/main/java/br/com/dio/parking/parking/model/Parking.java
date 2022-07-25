@@ -2,7 +2,7 @@ package br.com.dio.parking.parking.model;
 
 import java.time.LocalDate;
 
-public class Parking {
+public class Parking implements Comparable<Parking>{
 
 	private String id;
 	private String license;
@@ -60,7 +60,15 @@ public class Parking {
 	public void setBill(Double bill) {
 		this.bill = bill;
 	}
+	@Override
+	public int compareTo(Parking o) {
+		return this.getId().compareTo(o.getId());
+	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		Parking parking = (Parking) obj;
+		return this.getId().equals(parking.getId());
+	}
 	
 }
