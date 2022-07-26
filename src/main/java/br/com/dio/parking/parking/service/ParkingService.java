@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.dio.parking.parking.dto.ParkingDto;
 import br.com.dio.parking.parking.model.Parking;
 
 @Service
@@ -15,6 +16,10 @@ public class ParkingService {
 	private List<Parking> list = new ArrayList<Parking>();
 	
 	public List<Parking> findAll(){
+		Parking parking = new Parking();
+		parking.setModel("strada");
+		parking.setColor("vermelho");
+		list.add(parking);
 		return list;
 	}
 	
