@@ -8,45 +8,51 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import br.com.dio.parking.parking.dto.ParkingDto;
+import br.com.dio.parking.parking.exeception.ParkingNotFounfException;
 import br.com.dio.parking.parking.model.Parking;
+import br.com.dio.parking.parking.repositories.ParkingRepository;
+import ch.qos.logback.core.joran.conditional.ThenOrElseActionBase;
 
 @Service
 public class ParkingService {
 	
+	private final ParkingRepository parkingRepository;
+	
+	public ParkingService(ParkingRepository parkingRepository) {
+		this.parkingRepository = parkingRepository;
+	}
+	
 	private List<Parking> list = new ArrayList<Parking>();
 	
 	public List<Parking> findAll(){
-		Parking parking = new Parking();
-		parking.setModel("strada");
-		parking.setColor("vermelho");
-		list.add(parking);
-		return list;
+		return parkingRepository.findAll();
 	}
 	
-	public Optional<Parking> findById(String id) {
-		
-		return list.stream().filter(c -> c.getId().equals(id)).findAny();
+	public Parking findById(Long id) {
+		return parkingRepository.findById(id).orElseThrow(() -> new ParkingNotFounfException(id));
 }
 
 	public Parking create(Parking parking) {
-		list.add(parking);
+		parkingRepository.save(parking);
 		return parking;
 	}
 	
-	public void delete(String id) {
-		if(this.findById(id).isPresent()) {
-			list.remove(this.findById(id).get());
-		}
-		
+	public void delete(Long id) {
+		this.findById(id);
+		parkingRepository.deleteById(id);
 	}
 
-	public Parking update(Parking parking) {
-		if(list.contains(parking)) {
-			
-			list.add(list.indexOf(parking)
-					, parking);
-		}
+	public Parking update(Long id, Parking form) {
+		Parking parking = this.findById(id);
+		parking.setModel(form.getModel());
+		parking.setColor(form.getColor());
+        parking.setState(form.getState());
 		return parking;
+	}
+	
+	public Parking exit() {
+		return null;
+		
 	}
 
 }

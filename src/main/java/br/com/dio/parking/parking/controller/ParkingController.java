@@ -41,12 +41,8 @@ public class ParkingController {
 		}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ParkingDto> findById(@PathVariable String id){
-		Optional<Parking> parking = parkingService.findById(id);
-		if(!parking.isPresent()) {
-			throw new ParkingNotFounfException(id);
-		}
-		return ResponseEntity.ok(mapper.parkingDto(parking.get()));
+	public ResponseEntity<ParkingDto> findById(@PathVariable Long id){
+		return ResponseEntity.ok(mapper.parkingDto(parkingService.findById(id)));
 		}
 
 	@PostMapping
@@ -56,17 +52,17 @@ public class ParkingController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable String id){
+	public ResponseEntity<?> delete(@PathVariable Long id){
 		this.findById(id);
 		parkingService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ParkingDto> update(@PathVariable String id, @RequestBody ParkingCrateDto crateDto){
+	public ResponseEntity<ParkingDto> update(@PathVariable Long id, @RequestBody ParkingCrateDto crateDto){
 		this.findById(id);
 		Parking parking = mapper.createToParking(crateDto);
-		return ResponseEntity.ok( mapper.parkingDto(parkingService.update(parking)));
+		return ResponseEntity.ok( mapper.parkingDto(parkingService.update(id, parking)));
 	}
 	
 }

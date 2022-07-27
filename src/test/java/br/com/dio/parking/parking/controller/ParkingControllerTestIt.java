@@ -33,7 +33,6 @@ class ParkingControllerTestIt {
 	@Test
 	void testCreate() {
 		ParkingCrateDto dto = new ParkingCrateDto();
-		dto.setId("123");
 		dto.setLicense("5123");
 		dto.setState("ro");
 		dto.setModel("gol");

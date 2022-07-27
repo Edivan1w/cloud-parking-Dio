@@ -2,19 +2,12 @@ package br.com.dio.parking.parking.dto;
 
 public class ParkingCrateDto {
 	
-	private String id;
+
 	private String license;
 	private String state;
 	private String model;
 	private String color;
 	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
 	
 	public String getLicense() {
 		return license;

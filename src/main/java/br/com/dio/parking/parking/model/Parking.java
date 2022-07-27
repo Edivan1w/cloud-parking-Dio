@@ -2,9 +2,17 @@ package br.com.dio.parking.parking.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Parking implements Comparable<Parking>{
 
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String license;
 	private String state;
 	private String model;
@@ -12,10 +20,10 @@ public class Parking implements Comparable<Parking>{
 	private LocalDate entryDate;
 	private LocalDate exitDate;
 	private Double bill;
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getLicense() {

@@ -8,7 +8,7 @@ public class ParkingNotFounfException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ParkingNotFounfException(String id) {
+	public ParkingNotFounfException(Long id) {
 		super("Parking not fount whith id: " + id);
 	}
 
