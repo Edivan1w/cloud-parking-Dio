@@ -1,9 +1,12 @@
 package br.com.dio.parking.parking.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +25,7 @@ public class ParkingService {
 		this.parkingRepository = parkingRepository;
 	}
 	
-	private List<Parking> list = new ArrayList<Parking>();
+
 	
 	public List<Parking> findAll(){
 		return parkingRepository.findAll();
@@ -33,6 +36,7 @@ public class ParkingService {
 }
 
 	public Parking create(Parking parking) {
+		parking.setEntryDate(LocalDateTime.now());
 		parkingRepository.save(parking);
 		return parking;
 	}
@@ -49,10 +53,10 @@ public class ParkingService {
         parking.setState(form.getState());
 		return parking;
 	}
-	
-	public Parking exit() {
-		return null;
-		
+	@Transactional
+	public Parking exit(Parking parking) {
+		 parking.setBill(ParkingCheckOut.getBill(parking));
+		 return parking;
 	}
 
 }

@@ -13,9 +13,9 @@ public class ParkingDto {
 	private String state;
 	private String model;
 	private String color;
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	//@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDate entryDate;
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	//@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDate exitDate;
 	private Double bill;
 	

@@ -65,4 +65,13 @@ public class ParkingController {
 		return ResponseEntity.ok( mapper.parkingDto(parkingService.update(id, parking)));
 	}
 	
+	@PutMapping("/exit/{id}")
+	public ResponseEntity<ParkingDto> exit(@PathVariable Long id){
+		this.findById(id);
+		 return ResponseEntity
+				 .ok(mapper.parkingDto(parkingService
+						 .exit(parkingService.findById(id))));
+	} 
+	
+	
 }
