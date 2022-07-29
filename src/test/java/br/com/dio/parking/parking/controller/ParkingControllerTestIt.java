@@ -11,7 +11,7 @@ import br.com.dio.parking.parking.dto.ParkingCrateDto;
 import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class ParkingControllerTestIt {
+class ParkingControllerTestIt extends AbstractContainer{
 	
 	@LocalServerPort
 	private int port;
